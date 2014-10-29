@@ -18,6 +18,37 @@ a {
     }
 }
 
+.waiter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    z-index: 1000;
+    height: 0;
+    text-align: center;
+    color: #444;
+    font-size: 50px;
+    //transition: .5s;
+    &.show {
+        height: 100%;
+        opacity: 1;
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 0px;
+        vertical-align: middle;
+    }
+    > span {
+        display: block;
+        margin-top: 15%;
+    }
+}
+
 header {
     padding: 135px 0 100px 0;
     text-align: center;
@@ -59,6 +90,7 @@ nav {
     background: rgba(255, 255, 255, 0.3);
     width: 100%;
     padding: 5px 0px;
+    min-height: 100%;
     > .search {
         position: relative;
         margin: 60px auto;
@@ -88,6 +120,7 @@ nav {
     }
     > .content {
         > .perf-item {
+            position: relative;
             background: #FFF;
             width: 100%;
             max-width: 600px;
@@ -107,6 +140,36 @@ nav {
                 font-size: 19px;
                 padding: 20px 0;
             }
+            > .restart {
+                position: absolute;
+                top: 24px;
+                right: 20px;
+                padding: 0px;
+                width: 20px;
+                height: 20px;
+                background: #9BA778;
+                cursor: pointer;
+                background: url(../img/icon/repeat.png) no-repeat;
+                background-size: contain;
+                opacity: .5;
+                transition: .5s;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            > .run {
+                text-align: center;
+                background: #82CA9C;
+                color: white;
+                padding: 15px 25px;
+                cursor: pointer;
+                opacity: 1;
+                transition: .5s;
+                font-size: 12px;
+                &:hover {
+                    opacity: .9;
+                }
+            }
             > .chart {
                 width: 100%;
                 max-width: 500px;
@@ -115,6 +178,7 @@ nav {
                 border: 1px solid #E1E1E1;
                 border-top: none;
                 border-right: none;
+                transition: .5s;
                 > .item {
                     height: 30px;
                     position: relative;
@@ -129,9 +193,11 @@ nav {
                     }
                     > .progress {
                         height: 100%;
+                        width: 0%;
                         background: #82CA9C;
                         overflow: hidden;
                         position: relative;
+                        transition: .5s;
                         > .inner-label {
                             position: absolute;
                             top: 5px;
@@ -174,6 +240,13 @@ nav {
                 padding: 10px 0;
                 cursor: pointer;
             }
+        }
+        > .nothing-found {
+            display: block;
+            opacity: .5;
+            text-align: center;
+            font-size: 50px;
+            font-weight: 100;
         }
     }
 }

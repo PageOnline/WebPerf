@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Performance Testing</title>
 
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700,900' rel='stylesheet' type='text/css'>
@@ -8,18 +9,23 @@
     </head>
 
     <body>
+
+        <div class="waiter show">
+            <span>Processing...</span>
+        </div>
+
         <header>
             <img src="img/WebPerf.png" alt="WebPerf logo">
             <p>Check out how fast your<br> code really is.</p>
         </header>
         <nav>
-            <span class="item active">NEWEST</span>
-            <!--<span class="item">JAVASCRIPT</span>
-            <span class="item">CSS</span>-->
+            <span class="item active">ALL</span>
+            <span class="item">JAVASCRIPT</span>
+            <span class="item">CSS</span>
         </nav>
         <div class="main">
-            <div class="search">
-                <input type="search" value="" spellcheck="false" placeholder="Comming soon">
+            <div class="search" id="search">
+                <input type="search" value="" spellcheck="false" placeholder="Search">
                 <img src="img/icon/search.png" alt="search-img">
             </div>
 
@@ -60,6 +66,7 @@
             </a>
         </footer>
 
+        <script src="js/search.js"></script>
         <script src="js/perf.js"></script>
         <script src="js/webperf.js"></script>
         <script src="js/templ.js"></script>

@@ -1,44 +1,57 @@
 (function(){
 
+
+/*     content    */
+
 var content = document.getElementById('content');
 
-
-for(var i = 0; i < 10; ++i) {
-    if(data.js[i]) {
-        content.appendChild(new PerfItem(data.js[i]));
+var showItems = function(obj) {
+    for(var i = 0; i < 5; ++i) {
+        if(obj[i]) {
+            content.appendChild(new PerfItem(obj[i]));
+        }
     }
 }
 
-/*addEventListener('load', function() {
+var nav = new Navigation([
+    { name: 'ALL', codename: 'all' },
+    { name: 'JAVASCRIPT', codename: 'js' },
+    { name: 'CSS', codename: 'css' }
+]);
 
-var i = 0;
-var arr = [];
+showItems(data.js);
 
-for(i = 0; i < 10000000; ++i) {
-    arr.push(i);
-}
+/*     /content     */
 
-console.log('for: ', WebPerf.run(function() {
-    for(var i = 0; i < arr.length; ++i);
-}) + 'ms');
-console.log('forEach: ', WebPerf.run(function() {
-    arr.forEach(function(element) {});
-}) + 'ms');
+/*     search     */
 
-console.log('for: ', 10000000 * WebPerf.perSecond(function() {
-    for(var i = 0; i < arr.length; ++i);
-}), 'ops');
-console.log('forEach: ', 10000000 * WebPerf.perSecond(function() {
-    arr.forEach(function(element) {});
-}), 'ops');
+var search = document.getElementById('search');
+var searchInput = search.getElementsByTagName('input')[0];
+var searchButton = search.getElementsByTagName('img')[0];
 
-console.time('for');
-for(i = 0; i < arr.length; ++i) {}
-console.timeEnd('for');
-console.time('forEach');
-arr.forEach(function(element, index, array) {});
-console.timeEnd('forEach');
+var doSearch = function() {
+    var temp = Search.array.by(data.js, 'name', searchInput.value);
+    if(temp.length === 0) {
+        content.innerHTML = '<span class="nothing-found">Nothing to see here.</span>';
+    } else {
+        content.innerHTML = '';
+        for(var i = 0; i < temp.length; ++i) {
+            content.appendChild(new PerfItem(temp[i]));
+        }
+    }
+};
 
-});*/
+searchInput.addEventListener('keydown', function(ev) {
+    if(ev.keyCode === 13) {
+        doSearch();
+    }
+});
+
+searchButton.addEventListener('click', function(ev) {
+    doSearch();
+});
+
+/*     /search     */
+
 
 })();
