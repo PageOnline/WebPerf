@@ -2,14 +2,14 @@
 
 var Wait = function(fn) {
     var waiter = document.getElementsByClassName('waiter')[0];
-    this.waiter.classList.add('show');
+    waiter.classList.add('show');
     fn();
-    this.waiter.classList.remove('show');
+    waiter.classList.remove('show');
     this.hide = function() {
-        this.waiter.classList.remove('show');
+        waiter.classList.remove('show');
     };
     this.show = function() {
-        this.waiter.classList.add('show');
+        waiter.classList.add('show');
     }
 }
 

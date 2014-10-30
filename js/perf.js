@@ -76,8 +76,8 @@ var data = {
                     name: 'for',
                     url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for',
                     fn: function() {
-                        var arr = Array(100);
-                        return 100 * WebPerf.run(function() {
+                        var arr = Array(1);
+                        return 1 * WebPerf.run(function() {
                             for(var i = 0; i < arr.length; ++i) {
                                 arr[i];
                             }
@@ -88,8 +88,8 @@ var data = {
                     name: 'while',
                     url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while',
                     fn: function() {
-                        var arr = Array(100);
-                        return 100 * WebPerf.run(function() {
+                        var arr = Array(1);
+                        return 1 * WebPerf.run(function() {
                             var i = 0;
                             while(i < arr.length) {
                                 arr[i];

@@ -20,19 +20,39 @@
         }
         return elem;
     }
-    var template = function(fn) {
-        return fn(el);
+    var template = function(str, fn) {
+        if(typeof str === 'function') {
+            return str(el);
+        } else {
+            var elems = document.getElementsByClassName(str);
+            for(var i = 0; i < elems.length; ++i) {
+                return fn(elems[i], el);
+            }
+        }
     }
     window.template = template;
 })();
 
 var Navigation = function(items) {
-    return template(function(el) {
-        return el('nav', {
-            content: (function() {
-                return el('div', {});
-            })()
-        })
+    return template('template-navigation', function(element, el) {
+        itemElements = [];
+        element.onindexchange = function() {};
+        for(var i = 0; i < items.length; ++i) {
+            itemElements.push(el('span', {
+                className: 'item ' + (function(){ return i === 0 ? 'active' : '' })(),
+                textContent: items[i].name,
+                own: items[i]
+            }));
+            itemElements[i].addEventListener('click', function() {
+                for(var ii = 0; ii < itemElements.length; ++ii) {
+                    itemElements[ii].classList.remove('active');
+                }
+                element.onindexchange(this.own);
+                this.classList.add('active');
+            });
+            element.appendChild(itemElements[i]);
+        }
+        return element;
     });
 }
 
@@ -92,7 +112,11 @@ var PerfItem = function(obj) {
             textContent: '',
             css: 'display: none',
             onclick: function() {
-                testIt();
+                Wait.show();
+                setTimeout(function() {
+                    testIt();
+                    Wait.hide();
+                }, 100);
             }
         });
 
